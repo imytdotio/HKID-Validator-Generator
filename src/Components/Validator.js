@@ -6,8 +6,7 @@ import React, { useState, useRef, useEffect } from "react";
  **/
 
 export const Validator = (props) => {
-
-  const input = 'border-b-2 bg-transparent mx-2'
+  const input = "border-b-2 bg-transparent mx-2";
 
   const [char, setChar] = useState("");
   const [digit, setDigit] = useState("");
@@ -16,20 +15,21 @@ export const Validator = (props) => {
   const charRef = useRef();
   const digitRef = useRef();
   const cDigitRef = useRef();
+
   const submitHandler = (e) => {
     e.preventDefault();
     setResult(e.target.value);
-    // console.log(char, digit, cDigit);
     let charSum = 0;
-    // if (char.length == 1) {
-    //   if (char.charCodeAt(0) >= 65 && char.charCodeAt(0) <= 90) {
-    //     charSum += ((char.charCodeAt(0) - 55) * 8) % 11;
-    //   } else if (char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122) {
-    //     charSum += ((char.charCodeAt(0) - 77) * 8) % 11;
-    //   }
-    // }
-    // // charSum += 3;
-    // console.log(charSum);
+    if (char.length == 1) {
+      charSum += 5;
+      if (char.charCodeAt(0) >= 65 && char.charCodeAt(0) <= 90) {
+        charSum += ((char.charCodeAt(0) - 55) * 8) % 11;
+      } else if (char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122) {
+        charSum += ((char.charCodeAt(0) - 87) * 8) % 11;
+      }
+    }
+
+    console.log(charSum);
 
     let digitSum = 0;
     for (let i = 5; i >= 0; i--) {
@@ -47,10 +47,6 @@ export const Validator = (props) => {
     } else {
       setResult(false);
     }
-    charSum = char.charCodeAt(0);
-    // console.log(charSum);
-    // console.log(sum);
-    // console.log(result);
   };
 
   useEffect(() => {
@@ -63,17 +59,18 @@ export const Validator = (props) => {
     if (char.length == 1 && digit.length == 6 && cDigit.length == 1) {
     }
   }, [char, digit, cDigit]);
+
   return (
     <div className="h-screen bg-green-300">
-      <h1 className='text-8xl font-light'>HKID Validator</h1>
-      <form onSubmit={() => {}}>
+      <h1 className="text-8xl font-light">HKID Validator</h1>
+      <form className="text-4xl my-8">
         <input
           ref={charRef}
           className={`${input} w-8`}
           onChange={(e) => {
             setChar(e.target.value);
           }}
-          maxLength="2"
+          maxLength="1"
         />
         <input
           ref={digitRef}
