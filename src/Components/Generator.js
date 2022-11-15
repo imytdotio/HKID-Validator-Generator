@@ -6,5 +6,9 @@ import React from "react";
  **/
 
 export const Generator = (props) => {
-  return <div>Generator</div>;
+  return (
+    <div className="h-screen bg-blue-300">
+      <h1 className="text-8xl font-light">HKID Generator</h1>
+    </div>
+  );
 };

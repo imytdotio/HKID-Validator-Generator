@@ -6,6 +6,9 @@ import React, { useState, useRef, useEffect } from "react";
  **/
 
 export const Validator = (props) => {
+
+  const input = 'border-b-2 bg-transparent mx-2'
+
   const [char, setChar] = useState("");
   const [digit, setDigit] = useState("");
   const [cDigit, setCDigit] = useState("");
@@ -61,11 +64,12 @@ export const Validator = (props) => {
     }
   }, [char, digit, cDigit]);
   return (
-    <div>
+    <div className="h-screen bg-green-300">
+      <h1 className='text-8xl font-light'>HKID Validator</h1>
       <form onSubmit={() => {}}>
         <input
           ref={charRef}
-          className="border inline-block w-8"
+          className={`${input} w-8`}
           onChange={(e) => {
             setChar(e.target.value);
           }}
@@ -73,8 +77,7 @@ export const Validator = (props) => {
         />
         <input
           ref={digitRef}
-          type="number"
-          className="border inline-block w-32"
+          className={`${input} w-32`}
           onChange={(e) => {
             setDigit(e.target.value);
           }}
@@ -82,8 +85,7 @@ export const Validator = (props) => {
         />
         <input
           ref={cDigitRef}
-          type="number"
-          className="border inline-block w-16"
+          className={`${input} w-8`}
           onChange={(e) => {
             setCDigit(e.target.value);
           }}
