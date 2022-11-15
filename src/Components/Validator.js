@@ -21,7 +21,7 @@ export const Validator = (props) => {
     e.preventDefault();
     setResult(e.target.value);
     let charSum = 0;
-    if (char.length == 1) {
+    if (char.length === 1) {
       charSum += 5;
       if (char.charCodeAt(0) >= 65 && char.charCodeAt(0) <= 90) {
         charSum += ((char.charCodeAt(0) - 55) * 8) % 11;
@@ -43,7 +43,7 @@ export const Validator = (props) => {
     }
 
     const sum = charSum + digitSum + parseInt(cDigit);
-    if (sum % 11 == 0) {
+    if (sum % 11 === 0) {
       setResult(true);
     } else {
       setResult(false);
@@ -64,13 +64,13 @@ export const Validator = (props) => {
     if (digit.length >= 6) {
       cDigitRef.current.focus();
     }
-    if (char.length == 1 && digit.length == 6 && cDigit.length == 1) {
+    if (char.length === 1 && digit.length === 6 && cDigit.length === 1) {
     }
   }, [char, digit, cDigit]);
 
   return (
     <div className={`h-screen ${result ? "bg-green-300" : "bg-red-300"} p-8`}>
-      <h1 className="text-8xl font-light">HKID Validator</h1>
+      <h1 className="xl:text-8xl text-4xl font-bold xl:font-light">HKID Validator</h1>
       <form className="text-4xl my-8 font-bold">
         <input
           ref={charRef}
