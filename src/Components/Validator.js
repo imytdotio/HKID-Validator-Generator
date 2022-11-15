@@ -6,7 +6,8 @@ import React, { useState, useRef, useEffect } from "react";
  **/
 
 export const Validator = (props) => {
-  const input = "border-b-2 bg-transparent mx-2";
+  const input = "border-b-2 bg-transparent mx-2 border-black text-center";
+  const button = "bg-white rounded-xl my-4 mx-2 p-2 border border-black-200";
 
   const [char, setChar] = useState("");
   const [digit, setDigit] = useState("");
@@ -49,6 +50,13 @@ export const Validator = (props) => {
     }
   };
 
+  const clearHandler = (e) => {
+    e.preventDefault();
+    setChar("");
+    setDigit("");
+    setCDigit("");
+  };
+
   useEffect(() => {
     if (char.length >= 1) {
       digitRef.current.focus();
@@ -61,12 +69,13 @@ export const Validator = (props) => {
   }, [char, digit, cDigit]);
 
   return (
-    <div className="h-screen bg-green-300">
+    <div className={`h-screen ${result ? "bg-green-300" : "bg-red-300"} p-8`}>
       <h1 className="text-8xl font-light">HKID Validator</h1>
-      <form className="text-4xl my-8">
+      <form className="text-4xl my-8 font-bold">
         <input
           ref={charRef}
-          className={`${input} w-8`}
+          value={char}
+          className={`${input} w-12`}
           onChange={(e) => {
             setChar(e.target.value);
           }}
@@ -74,7 +83,8 @@ export const Validator = (props) => {
         />
         <input
           ref={digitRef}
-          className={`${input} w-32`}
+          value={digit}
+          className={`${input} w-48`}
           onChange={(e) => {
             setDigit(e.target.value);
           }}
@@ -82,17 +92,25 @@ export const Validator = (props) => {
         />
         <input
           ref={cDigitRef}
-          className={`${input} w-8`}
+          value={cDigit}
+          className={`${input} w-12`}
           onChange={(e) => {
             setCDigit(e.target.value);
           }}
           maxLength="1"
         />
-        <button onClick={submitHandler} className="inline-block border">
-          Submit
+        <br />
+        <button onClick={submitHandler} className={button}>
+          🔎 Check
+        </button>
+        <button onClick={clearHandler} className={button}>
+          🗑 Clear
         </button>
       </form>
-      <p>{result && result}</p>
+      <p className="text-gray-700">
+        😉 Just to let you know,
+        <br /> we don't store your data.
+      </p>
     </div>
   );
 };
