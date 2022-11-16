@@ -30,8 +30,6 @@ export const Validator = (props) => {
       }
     }
 
-    console.log(charSum);
-
     let digitSum = 0;
     for (let i = 5; i >= 0; i--) {
       // digitSum += parseInt(digit[7 - i]);

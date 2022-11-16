@@ -12,9 +12,22 @@ export const Generator = (props) => {
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const char = alphabet[Math.floor(Math.random() * alphabet.length)];
     const digit = Math.floor(100000 + Math.random() * 900000);
-    const cDigit = 
-    setResult(char.concat(digit));
-    console.log(char, digit);
+    const digitString = digit.toString();
+    let digitSum = 0;
+    for (let i = 5; i >= 0; i--) {
+      digitSum += (parseInt(digitString[i]) * (7 - i)) % 11;
+    }
+    const charDigitSum = 5 + (((char.charCodeAt(0) - 55) * 8) % 11);
+    const sum = charDigitSum + digitSum;
+    let cDigit;
+    if (sum % 11 == 0) {
+      cDigit = "0";
+    } else if (11 - (sum % 11) == 10) {
+      cDigit = "A";
+    } else {
+      cDigit = 11 - (sum % 11);
+    }
+    setResult(char.concat(digit).concat("(").concat(cDigit).concat(")"));
   };
 
   useEffect(() => {
